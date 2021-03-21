@@ -157,11 +157,12 @@ def brute_force_cow_transport(cows,limit=10):
         
     return mnmm_possibilty
     
-#print(brute_force_cow_transport({'Jesse': 6, 'Maybel': 3, 'Callie': 2, 'Maggie': 5})) 
+
 
 
         
 # Problem 4
+#done
 def compare_cow_transport_algorithms():
     """
     Using the data from ps1_cow_data.txt and the specified weight limit, run your
@@ -185,11 +186,9 @@ def compare_cow_transport_algorithms():
     d = brute_force_cow_transport(load_cows('ps1_cow_data.txt'))
     lns = len(d)
     end = time.time()
-    
-    
+
     
     print("Brute force algorithm returned {} trips and took {} seconds.".format(lns, end - start))
     print("Greedy algorithm returned {} trips and took {} seconds.".format(ln, end1 - start1))
 
-compare_cow_transport_algorithms()
     
