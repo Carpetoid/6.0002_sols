@@ -99,7 +99,6 @@ def greedy_cow_transport(cows,limit=10):
     
 
 
-print(greedy_cow_transport(load_cows('ps1_cow_data.txt')))
 
 # Problem 3
 def brute_force_cow_transport(cows,limit=10):
@@ -123,8 +122,43 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    possibilties = []
+    for trip_possibilty in get_partitions(cows):
+        possibilties += [trip_possibilty]
+    
+    possibiltiescopy = possibilties.copy()
+    
+    
+    for possibilty in possibilties:
+
+        for trip in possibilty:
+            total = 0
+            
+            for cow in trip:
+                total += cows[cow]
+            
+            if total > limit:
+                possibiltiescopy.remove(possibilty)
+    
+    mnmm_possibilty = None
+    mnmm = None
+   
+    for i in possibiltiescopy:
+        try:
+            if len(i) <= mnmm:
+                mnmm_possibilty = i
+                mnmm = len(i)
+        
+        except TypeError:
+            mnmm_possibilty = i
+            mnmm = len(i)
+        
+    return mnmm_possibilty
+    
+
+        
+
+print(brute_force_cow_transport({'Jesse': 6, 'Maybel': 3, 'Callie': 2, 'Maggie': 5}))
         
 # Problem 4
 def compare_cow_transport_algorithms():
