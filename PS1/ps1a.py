@@ -80,7 +80,7 @@ def greedy_cow_transport(cows,limit=10):
         del cowscopy[heaviestk]
         sort.append(heaviestk)
         
-
+   
         
     while len(sort) != 0:  
         knapsack = []
@@ -98,8 +98,8 @@ def greedy_cow_transport(cows,limit=10):
      
     
 
-print(greedy_cow_transport({'Jesse':6, 'Maybel': 3, 'Callie': 2, 'Maggie': 5}))
-#print(greedy_cow_transport())
+
+print(greedy_cow_transport(load_cows('ps1_cow_data.txt')))
 
 # Problem 3
 def brute_force_cow_transport(cows,limit=10):
