@@ -12,6 +12,7 @@ import time
 #================================
 
 # Problem 1
+#done
 def load_cows(filename):
     """
     Read the contents of the given file.  Assumes the file contents contain
@@ -24,10 +25,25 @@ def load_cows(filename):
     Returns:
     a dictionary of cow name (string), weight (int) pairs
     """
-    # TODO: Your code here
-    pass
+    a = open(filename)
+    ls = []
+    dc = {}
+    for i in a:
+        ls += i.split('\n')
+    
+    for i in ls:
+        if i == '':
+            ls.remove(i)
+    
+    for i in ls:
+        temp = i.split(",")
+        dc[temp[0]] = float(temp[1])
+       
+    a.close()
+    return dc
 
 # Problem 2
+#done
 def greedy_cow_transport(cows,limit=10):
     """
     Uses a greedy heuristic to determine an allocation of cows that attempts to
@@ -50,8 +66,40 @@ def greedy_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    sort = []
+    ls = []
+    cowscopy = cows.copy()
+    while len(cowscopy) != 0:
+        heaviestk = None
+        heaviestv = 0
+        for i in cowscopy:
+            if cowscopy[i] >= heaviestv:
+                heaviestk = i
+                heaviestv = cowscopy[i]
+       
+        del cowscopy[heaviestk]
+        sort.append(heaviestk)
+        
+
+        
+    while len(sort) != 0:  
+        knapsack = []
+        avail = limit
+        total = 0
+        sorts = sort.copy()
+        
+        for i in sorts:
+            if cows[i] + total <= avail:
+                knapsack.append(i)
+                total += cows[i]
+                sort.remove(i)
+        ls.append(knapsack)
+    return ls
+     
+    
+
+print(greedy_cow_transport({'Jesse':6, 'Maybel': 3, 'Callie': 2, 'Maggie': 5}))
+#print(greedy_cow_transport())
 
 # Problem 3
 def brute_force_cow_transport(cows,limit=10):
