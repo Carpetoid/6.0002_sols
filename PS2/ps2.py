@@ -20,7 +20,9 @@ from graph import Digraph, Node, WeightedEdge
 # represented?
 #
 # Answer:
-#
+# Nodes represent buildings. Edges represent paths connecting buildings. 
+# weights represent both the total distance and and outdoor distance between
+# each building.
 
 
 # Problem 2b: Implementing load_map
@@ -43,12 +45,37 @@ def load_map(map_filename):
         a Digraph representing the map
     """
 
-    # TODO
-    print("Loading map from file...")
 
+    print("Loading map from file...")
+    MIT = Digraph()
+    file = open(map_filename, 'r')
+   
+    for line in file:
+        line = line.strip('\n')
+        newline = line.split(' ')
+        node_src = Node(newline[0])
+        node_dest = Node(newline[1])
+        weighted = WeightedEdge(node_src, node_dest, newline[2], newline[3])
+       
+        if not (MIT.has_node(node_src)):
+            MIT.add_node(node_src)
+       
+        if not (MIT.has_node(node_dest)):
+            MIT.add_node(node_dest)
+       
+        MIT.add_edge(weighted)
+    file.close()
+    return MIT
+   
+            
+       
+        
+        
+        
 # Problem 2c: Testing load_map
 # Include the lines used to test load_map below, but comment them out
-
+# a = load_map('test_load_map.txt')
+# print(a)
 
 #
 # Problem 3: Finding the Shorest Path using Optimized Search Method
